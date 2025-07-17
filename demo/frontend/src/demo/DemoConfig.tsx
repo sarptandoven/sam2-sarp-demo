@@ -23,7 +23,7 @@ type EffectLayers = {
 export const DEMO_SHORT_NAME = 'SAM 2 Demo';
 export const RESEARCH_BY_META_AI = 'By Meta FAIR';
 export const DEMO_FRIENDLY_NAME = 'Segment Anything 2 Demo';
-export const VIDEO_WATERMARK_TEXT = `Modified with ${DEMO_FRIENDLY_NAME}`;
+export const VIDEO_WATERMARK_TEXT = ``;
 export const PROJECT_GITHUB_URL =
   'https://github.com/facebookresearch/sam2';
 export const AIDEMOS_URL = 'https://aidemos.meta.com';

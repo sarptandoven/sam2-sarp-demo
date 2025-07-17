@@ -287,7 +287,7 @@ def process_video(
     max_time: float,
     start_time_sec: Optional[float] = None,
     duration_time_sec: Optional[float] = None,
-) -> Tuple[Optional[str], str, str, VideoMetadata]:
+) -> Tuple[Optional[str], str, VideoMetadata]:
     """
     Process file upload including video trimming and content moderation checks.
 

@@ -286,19 +286,41 @@ def load_video_frames_from_video_file(
     compute_device=torch.device("cuda"),
 ):
     """Load the video frames from a video file."""
-    import decord
+    import cv2
+    import numpy as np
 
     img_mean = torch.tensor(img_mean, dtype=torch.float32)[:, None, None]
     img_std = torch.tensor(img_std, dtype=torch.float32)[:, None, None]
-    # Get the original video height and width
-    decord.bridge.set_bridge("torch")
-    video_height, video_width, _ = decord.VideoReader(video_path).next().shape
-    # Iterate over all frames in the video
+    
+    # Open video file using OpenCV
+    cap = cv2.VideoCapture(video_path)
+    if not cap.isOpened():
+        raise ValueError(f"Error opening video file: {video_path}")
+    
+    # Get original video dimensions
+    video_width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
+    video_height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
+    
     images = []
-    for frame in decord.VideoReader(video_path, width=image_size, height=image_size):
-        images.append(frame.permute(2, 0, 1))
-
-    images = torch.stack(images, dim=0).float() / 255.0
+    while True:
+        ret, frame = cap.read()
+        if not ret:
+            break
+        
+        # Convert BGR to RGB
+        frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+        # Resize frame
+        frame = cv2.resize(frame, (image_size, image_size))
+        # Convert to tensor and normalize to [0, 1]
+        frame_tensor = torch.from_numpy(frame).permute(2, 0, 1).float() / 255.0
+        images.append(frame_tensor)
+    
+    cap.release()
+    
+    if not images:
+        raise ValueError(f"No frames found in video: {video_path}")
+    
+    images = torch.stack(images, dim=0)
     if not offload_video_to_cpu:
         images = images.to(compute_device)
         img_mean = img_mean.to(compute_device)

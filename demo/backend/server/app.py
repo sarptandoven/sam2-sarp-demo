@@ -27,6 +27,8 @@ from strawberry.flask.views import GraphQLView
 logger = logging.getLogger(__name__)
 
 app = Flask(__name__)
+# Configure Flask for larger file uploads (100MB limit)
+app.config['MAX_CONTENT_LENGTH'] = 100 * 1024 * 1024  # 100MB
 cors = CORS(app, supports_credentials=True)
 
 videos = preload_data()
