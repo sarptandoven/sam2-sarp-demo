@@ -1,212 +1,240 @@
-# 🎬 SAM2 Demo - Google Colab Deployment
+# 🚀 SAM2 Demo - Google Colab Deployment
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/sarptandoven/sam2-demo/blob/main/SAM2_Colab_Demo.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/sarptandoven/sam2-sarp-demo/blob/main/SAM2_Colab_Demo.ipynb)
 
-## ⚡ Quick Start
+**One-click deployment of SAM2 video segmentation demo on Google Colab with GPU acceleration and public web access.**
 
-**1-Click Deployment**: Click the "Open in Colab" badge above to launch the demo instantly!
+## ✨ Features
 
-This comprehensive Google Colab notebook provides a complete, GPU-accelerated SAM2 video segmentation demo that runs entirely in the cloud with a public web interface.
+### 🎯 AI-Powered Video Segmentation
+- **Real-time Object Tracking**: Click to track any object in video frames
+- **Multi-object Support**: Track multiple objects simultaneously
+- **Instant Preview**: See segmentation results in real-time
 
-## 🚀 Features
+### 🎨 Interactive Video Editing
+- **Background Effects**: Blur, replace, or remove backgrounds
+- **Visual Overlays**: Add arrows, text, and effects
+- **Professional Export**: Download high-quality processed videos
 
-- **🔥 GPU Acceleration**: Automatically configured for Google Colab's Tesla T4, V100, or A100 GPUs
-- **🌐 Public Web Interface**: Access the demo from any device via a public URL
-- **📱 Mobile Friendly**: Responsive design works on phones and tablets
-- **🎯 Zero Setup**: No local installation required - everything runs in Colab
-- **⚡ Fast Inference**: GPU-optimized for real-time video segmentation
-- **📹 Video Upload**: Support for custom video uploads (up to 100MB, 10 seconds)
-- **🎨 Visual Effects**: Multiple background and overlay effects
-- **💾 Export Options**: Download segmented videos and masks
+### 🚀 Optimized for Colab
+- **GPU Acceleration**: Optimized for Tesla T4/V100/A100 GPUs
+- **Public Access**: Get shareable URLs for any device
+- **Zero Setup**: Everything configured automatically
 
-## 🎯 What You Get
+## 🔧 Quick Start
 
-### Interactive Video Segmentation
-- Click to select objects in any video frame
-- Real-time mask generation with SAM2
-- Automatic propagation across all frames
-- Support for multiple objects simultaneously
+### 1. Open in Colab
+Click the badge above or visit: https://colab.research.google.com/github/sarptandoven/sam2-sarp-demo/blob/main/SAM2_Colab_Demo.ipynb
 
-### Professional Effects
-- Background replacement and blurring
-- Object highlighting and overlays
-- Custom color schemes and transparency
-- High-quality video export
+### 2. Enable GPU (Recommended)
+- Go to `Runtime` → `Change runtime type`
+- Select `T4 GPU` or higher
+- Click `Save`
 
-### Technical Features
-- **Model**: SAM2 (Segment Anything 2) by Meta AI
-- **Backend**: Flask + GraphQL API
-- **Frontend**: React + TypeScript with Vite
-- **GPU Support**: CUDA acceleration on Colab
-- **Public Access**: Cloudflare tunnels for external access
+### 3. Run All Cells
+- Press `Ctrl+F9` to run all cells
+- Or click `Runtime` → `Run all`
+- Wait 3-5 minutes for setup
 
-## 📋 Prerequisites
+### 4. Access Your Demo
+- Look for the public URL in the output
+- Click the frontend URL to start using the demo
+- Share the URL with others!
 
-- Google account (for Colab access)
-- Modern web browser
-- Internet connection
+## 📊 Technical Specifications
 
-**That's it!** No software installation or setup required.
+### Performance Metrics
+- **Model Loading**: 10-20 seconds
+- **Video Processing**: 0.5-1 second per frame
+- **GPU Memory Usage**: 2-4GB
+- **Initial Setup Time**: 3-5 minutes
 
-## 🔧 How It Works
+### Supported Formats
+- **Input Videos**: MP4, WebM, AVI (max 10 seconds, 100MB)
+- **Output Videos**: MP4 with H.264 encoding
+- **Resolution**: Up to 1080p (720p recommended for speed)
 
-The notebook automatically:
+### Model Sizes Available
+- **Tiny**: 149MB - Fastest, good for demos
+- **Small**: 181MB - **Default** - Balanced speed/accuracy
+- **Base Plus**: 688MB - Higher accuracy
+- **Large**: 901MB - Best quality (requires more GPU memory)
 
-1. **🔧 Environment Setup**: Configures GPU runtime and system dependencies
-2. **📥 Code Download**: Clones the latest SAM2 demo repository
-3. **🤖 Model Loading**: Downloads and initializes SAM2 model weights
-4. **🚀 Service Launch**: Starts backend API and frontend web server
-5. **🌐 Public Access**: Creates secure tunnel for external access
-6. **📊 Monitoring**: Provides real-time status and health checks
+## 🎮 How to Use
 
-## 🎮 Usage Instructions
-
-### Getting Started
-1. Click the "Open in Colab" badge above
-2. Go to `Runtime` → `Change runtime type` → Select `GPU`
-3. Run all cells in order (or `Runtime` → `Run all`)
-4. Wait for the public URL to appear (3-5 minutes)
-5. Click the generated link to access the demo
-
-### Using the Demo
-1. **Select a Video**: Choose from gallery or upload your own
-2. **Add Objects**: Click "Add Object" and select areas in the video
-3. **Preview Segmentation**: Watch real-time mask generation
-4. **Apply Effects**: Choose background and overlay effects
-5. **Export Results**: Download the final segmented video
+### Basic Workflow
+1. **Select Video**: Choose from gallery or upload your own
+2. **Track Objects**: Click on objects you want to segment
+3. **Apply Effects**: Use toolbar to add backgrounds and overlays
+4. **Export Results**: Download your processed video
 
 ### Pro Tips
-- Start with gallery videos to test the interface
-- Upload videos under 10 seconds for best performance
-- Use the filmstrip to navigate between frames
-- Try different effects for creative results
+- **Multiple Objects**: Track different objects with different colors
+- **Frame Navigation**: Use filmstrip to navigate to specific frames
+- **Effect Timing**: Apply effects to specific frame ranges
+- **Performance**: Lower resolution videos process faster
 
-## 🔧 Troubleshooting
+## 🛠️ Advanced Configuration
+
+### Change Model Size
+Edit the environment variable in the setup cell:
+```python
+os.environ['MODEL_SIZE'] = 'base_plus'  # tiny, small, base_plus, large
+```
+
+### CPU Mode (if GPU unavailable)
+```python
+os.environ['SAM2_DEMO_FORCE_CPU_DEVICE'] = '1'
+```
+
+### Custom Video Limits
+```python
+os.environ['MAX_VIDEO_DURATION'] = '15'  # seconds
+os.environ['MAX_FILE_SIZE'] = '150'      # MB
+```
+
+## 🐛 Troubleshooting
 
 ### Common Issues
 
-**Services Not Starting**
-- Ensure GPU runtime is selected
-- Re-run the setup cells if needed
-- Check the service status cell for details
+#### "No GPU detected"
+- **Solution**: Enable GPU in Runtime settings
+- **Fallback**: Code will work on CPU (slower)
 
-**GPU Not Detected**
-- Go to `Runtime` → `Change runtime type` → Select `GPU`
-- Restart runtime if necessary
+#### "Backend not responding"
+- **Solution**: Re-run the backend startup cell
+- **Check**: Look for port conflicts in the output
 
-**Video Upload Fails**
-- Ensure video is under 100MB and 10 seconds
-- Use common formats (MP4, MOV, AVI)
-- Check file isn't corrupted
+#### "Frontend URL not working"
+- **Solution**: Wait 30 seconds and try again
+- **Alternative**: Use the local URL if on same machine
 
-**Slow Performance**
-- Verify GPU is being used (check status cell)
-- Try smaller model size (change `MODEL_SIZE` to `tiny`)
-- Use shorter videos for faster processing
+#### "Video upload fails"
+- **Check**: File size under 100MB
+- **Check**: Duration under 10 seconds
+- **Try**: Different video format (MP4 recommended)
 
-### Advanced Troubleshooting
+#### "Segmentation is slow"
+- **Switch**: To smaller model size
+- **Reduce**: Video resolution
+- **Check**: GPU is enabled and available
 
-**Manual Service Control**
+### Restart Everything
+If something goes wrong:
+1. `Runtime` → `Restart runtime`
+2. Run all cells again
+3. Wait for complete setup
+
+### Check Service Status
 ```python
-# Check if services are running
-!ps aux | grep -E "(python.*7263|yarn.*5173)"
+# Backend health check
+!curl http://localhost:7263/health
 
-# Restart backend if needed
-%cd /content/sam2-demo/demo/backend/server
-!python app.py &
+# Check running processes
+!ps aux | grep python
 
-# Restart frontend if needed  
-%cd /content/sam2-demo/demo/frontend
-!yarn dev --host 0.0.0.0 --port 5173 &
+# Check GPU usage
+!nvidia-smi
 ```
 
-**Debug Logs**
-- Backend logs: Check Python process output
-- Frontend logs: Check Yarn/Vite build output
-- GPU usage: Monitor with status check cell
+## 🔧 Development Mode
 
-## 🎯 Technical Architecture
+### Local Development
+To run locally instead of Colab:
+```bash
+git clone https://github.com/sarptandoven/sam2-sarp-demo.git
+cd sam2-sarp-demo
 
-### Backend Services
-- **SAM2 Model**: GPU-accelerated inference engine
-- **GraphQL API**: Efficient data queries and mutations
-- **Video Processing**: FFmpeg-based transcoding and optimization
-- **File Management**: Secure upload and storage handling
+# Install dependencies
+pip install -e .
+pip install -r demo/backend/requirements.txt
+cd demo/frontend && yarn install
 
-### Frontend Application
-- **React Framework**: Modern, responsive user interface
-- **TypeScript**: Type-safe development and better debugging
-- **Vite Build**: Fast development and optimized production builds
-- **Real-time Updates**: WebSocket-like GraphQL subscriptions
-
-### Infrastructure
-- **Google Colab**: Free GPU compute environment
-- **Cloudflare Tunnels**: Secure public access without port forwarding
-- **Container Architecture**: Isolated, reproducible deployment
-
-## 📊 Performance Metrics
-
-### Typical Performance (Tesla T4)
-- **Model Loading**: 10-20 seconds
-- **Video Upload**: 2-5 seconds (10MB file)
-- **Initial Segmentation**: 1-2 seconds per object
-- **Frame Propagation**: 0.5-1 second per frame
-- **Effect Rendering**: 2-3 seconds for full video
-
-### Resource Usage
-- **GPU Memory**: 2-4GB (depending on video resolution)
-- **System RAM**: 1-2GB for services
-- **Disk Space**: 3-5GB for models and dependencies
-- **Network**: Minimal after initial setup
-
-## 🌟 Advanced Features
-
-### Custom Model Configuration
-```python
-# Use different model sizes
-os.environ['MODEL_SIZE'] = 'tiny'    # Fastest, lower quality
-os.environ['MODEL_SIZE'] = 'small'   # Balanced (default)
-os.environ['MODEL_SIZE'] = 'base_plus'  # Best quality, slower
+# Start services
+cd ../backend/server && python app.py &
+cd ../../frontend && yarn dev
 ```
 
-### Development Mode
-```python
-# Enable debug mode for development
-os.environ['DEBUG'] = 'true'
-os.environ['FLASK_ENV'] = 'development'
+### Environment Variables
+Key configuration options:
+```bash
+export MODEL_SIZE="small"                    # Model size
+export APP_ROOT="/path/to/sam2-sarp-demo"   # Root directory
+export DATA_PATH="/path/to/demo/data"       # Data directory
+export API_URL="http://localhost:7263"      # Backend URL
+export PYTORCH_ENABLE_MPS_FALLBACK=1        # GPU fallback
 ```
 
-### Custom Video Processing
-```python
-# Adjust video processing parameters
-os.environ['MAX_UPLOAD_FILE_SIZE'] = '50MB'      # Smaller uploads
-os.environ['MAX_UPLOAD_DURATION'] = '5'         # Shorter videos
-os.environ['VIDEO_RESOLUTION'] = '720p'         # Lower resolution
+## 📈 Performance Optimization
+
+### GPU Memory Management
+- **T4 GPU**: Use 'small' or 'tiny' model
+- **V100/A100**: Can handle 'base_plus' or 'large'
+- **Multiple videos**: Clear sessions between videos
+
+### Speed Optimization
+- **Lower resolution**: 480p-720p for faster processing
+- **Shorter videos**: Under 5 seconds for real-time feel
+- **Fewer objects**: Track 1-3 objects for best performance
+
+### Quality vs Speed
+- **Quality**: Use 'base_plus' or 'large' model
+- **Speed**: Use 'tiny' or 'small' model
+- **Balanced**: 'small' model (default)
+
+## 🌐 Sharing Your Demo
+
+### Public URLs
+- URLs are valid for ~8 hours
+- Work on any device with internet
+- No authentication required
+
+### Custom Domains
+For persistent URLs, consider:
+- ngrok (paid plans)
+- serveo.net
+- localhost.run
+
+### Embedding
+You can embed the demo in websites:
+```html
+<iframe src="https://your-tunnel-url.trycloudflare.com" 
+        width="100%" height="600px">
+</iframe>
 ```
+
+## 🔐 Security & Privacy
+
+### Data Handling
+- **Videos**: Processed locally in Colab, not stored
+- **Models**: Downloaded from official Meta repositories
+- **Privacy**: No data sent to external services
+
+### Network Access
+- Cloudflare tunnels provide secure HTTPS
+- URLs expire automatically
+- No persistent storage
 
 ## 🤝 Contributing
 
-This Colab deployment is part of the larger SAM2 demo project. Contributions welcome!
+This demo is based on Meta's SAM2 model. Contributions welcome!
 
-### Local Development
-For local development and contributions, see the main [README.md](README.md) for setup instructions.
+- **Repository**: https://github.com/sarptandoven/sam2-sarp-demo
+- **Issues**: Report bugs and feature requests
+- **Pull Requests**: Improvements and new features
 
-### Issues and Support
-- **Bug Reports**: [GitHub Issues](https://github.com/sarptandoven/sam2-demo/issues)
-- **Feature Requests**: [GitHub Discussions](https://github.com/sarptandoven/sam2-demo/discussions)
-- **Documentation**: [Project Wiki](https://github.com/sarptandoven/sam2-demo/wiki)
+## 📚 Resources
 
-## 📜 License
+### Official SAM2
+- **Paper**: [Segment Anything 2](https://ai.meta.com/research/publications/segment-anything-2/)
+- **Original Code**: https://github.com/facebookresearch/segment-anything-2
+- **Demo**: https://sam2.metademolab.com/
 
-This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENSE) file for details.
-
-## 🙏 Acknowledgments
-
-- **Meta AI Research**: For the original SAM2 model and research
-- **Google Colab**: For providing free GPU access
-- **Cloudflare**: For tunnel infrastructure
-- **Open Source Community**: For the amazing tools and libraries
+### Related Projects
+- **Segment Anything**: Original SAM model
+- **ComfyUI**: Use exported masks in ComfyUI workflows
+- **Video Editing**: Integration with professional video tools
 
 ---
 
-**Ready to try it?** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/sarptandoven/sam2-demo/blob/main/SAM2_Colab_Demo.ipynb) 
+**🚀 Ready to segment anything in your videos? Click the Colab badge above to get started!** 
