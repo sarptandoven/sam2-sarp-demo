@@ -1,0 +1,28 @@
+# Google Colab Requirements for SAM2 Demo
+# Compatible versions to avoid conflicts
+
+# PyTorch with specific versions
+torch==2.0.1
+torchvision==0.15.2
+torchaudio==2.0.2
+
+# SAM2 and core dependencies
+-e .
+flask
+flask-cors
+graphene
+strawberry-graphql[fastapi]
+gunicorn
+
+# Video processing
+av
+opencv-python
+pillow
+numpy
+tqdm
+
+# Optional - will fallback to OpenCV if fails
+decord
+
+# Additional dependencies
+requests 
