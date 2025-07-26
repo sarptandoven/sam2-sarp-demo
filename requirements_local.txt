@@ -1,0 +1,35 @@
+# SAM2 Demo Local Requirements
+# Core SAM2 package (installed via pip install -e .)
+
+# PyTorch (adjust based on your system)
+torch>=2.0.1
+torchvision>=0.15.2
+torchaudio>=2.0.2
+
+# Web framework
+flask>=3.0.3
+flask-cors>=5.0.0
+gunicorn>=23.0.0
+
+# GraphQL
+strawberry-graphql>=0.243.0
+graphene>=3.0
+
+# Video processing
+av>=13.0.0
+opencv-python>=4.7.0
+pillow>=9.4.0
+
+# Data processing
+numpy>=1.24.4
+tqdm>=4.66.1
+dataclasses-json>=0.6.7
+imagesize>=1.4.1
+pycocotools>=2.0.8
+
+# Optional video decoder (fallback to OpenCV if fails)
+eva-decord>=0.6.1
+
+# Development tools
+jupyter>=1.0.0
+matplotlib>=3.9.1 
